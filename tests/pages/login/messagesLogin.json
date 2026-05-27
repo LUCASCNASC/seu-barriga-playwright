@@ -1,0 +1,7 @@
+{
+    "userTypes": {
+        "administrador": "Administrador",
+        "representante": "Representante",
+        "vendedor": "VENDEDOR"
+    }
+}
