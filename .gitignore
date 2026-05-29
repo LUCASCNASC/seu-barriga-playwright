@@ -10,3 +10,5 @@ node_modules/
 #credentials
 .env
 playwright.config.ts
+
+test.txt

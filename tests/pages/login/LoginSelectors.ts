@@ -3,4 +3,6 @@ export const loginSelectors = {
 	emailInput: "input#email",
 	passwordInput: 'input#senha',
 	submitButton: 'button[type="submit"]',
+	successAlert: 'div.alert.alert-success',
+	errorAlert: 'div.alert.alert-danger',
 };

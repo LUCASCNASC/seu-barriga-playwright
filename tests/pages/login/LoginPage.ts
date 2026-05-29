@@ -36,4 +36,13 @@ export class LoginPage {
 		await this.page.click(loginSelectors.submitButton);
 	}
 
+	// Método para validar a mensagem de sucesso no login
+	async validateSuccessMessage(expectedText: string) {
+		await expect(this.page.locator(loginSelectors.successAlert)).toContainText(expectedText);
+	}
+
+	// Método para validar a mensagem de erro no login
+	async validateErrorMessage(expectedText: string) {
+		await expect(this.page.locator(loginSelectors.errorAlert)).toContainText(expectedText);
+	}
 }
