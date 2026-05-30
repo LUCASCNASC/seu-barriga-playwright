@@ -60,10 +60,4 @@ test.describe("login: fields empty", () => {
         await loginPage.submit();
         await loginPage.validateErrorMessage(messagesLogin.messages.passwordRequired);
     });
-    // test("email and password empty", async ({ page }) => {
-    //     const loginPage = new LoginPage(page);
-    //     await loginPage.submit();
-    //     await loginPage.validateErrorMessage(messagesLogin.messages.emailRequired);
-    //     await loginPage.validateErrorMessage(messagesLogin.messages.passwordRequired);
-    // });
 });

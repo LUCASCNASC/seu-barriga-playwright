@@ -45,4 +45,6 @@ export class LoginPage {
 	async validateErrorMessage(expectedText: string) {
 		await expect(this.page.locator(loginSelectors.errorAlert)).toContainText(expectedText);
 	}
+
+	
 }
