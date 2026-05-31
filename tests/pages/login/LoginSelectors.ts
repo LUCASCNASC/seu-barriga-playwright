@@ -5,4 +5,10 @@ export const loginSelectors = {
 	submitButton: 'button[type="submit"]',
 	successAlert: 'div.alert.alert-success',
 	errorAlert: 'div.alert.alert-danger',
+	navbarBrand: 'a.navbar-brand',
+	navbarLoginLink: 'li.active a[href="/login"]',
+	navbarRegisterLink: 'li a[href="/cadastro"]',
+	emailLabel: 'label[for="exampleInputEmail1"]',
+	passwordLabel: 'label[for="exampleInputPassword1"]',
+	navbarLogoutLink: 'li a[href="/logout"]',
 };

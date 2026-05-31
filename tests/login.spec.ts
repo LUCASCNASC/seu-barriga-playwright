@@ -14,6 +14,15 @@ test.describe("Successful login", () => {
         await loginPage.submit();
         await loginPage.validateSuccessMessage(messagesLogin.messages.welcome);
     });
+    test("successful logout", async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.fillEmail(process.env.MAIN_EMAIL);
+        await loginPage.fillPassword(process.env.MAIN_PASSWORD);
+        await loginPage.submit();
+        await loginPage.validateSuccessMessage(messagesLogin.messages.welcome);
+        await loginPage.logout();
+        await loginPage.validateNavbarBrand(messagesLogin.frontendValidations.titlePage);
+    });
 });
 
 test.describe("login: credentials invalid", () => {
@@ -59,5 +68,39 @@ test.describe("login: fields empty", () => {
         await loginPage.fillEmail(process.env.MAIN_EMAIL as string);
         await loginPage.submit();
         await loginPage.validateErrorMessage(messagesLogin.messages.passwordRequired);
+    });
+});
+
+test.describe("frontend validations", () => {
+    test.beforeEach(async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.goto();
+    });
+    test("frontend validations", async ({ page }) => {
+        const loginPage = new LoginPage(page);
+        await loginPage.validateNavbarBrand(messagesLogin.frontendValidations.titlePage);
+        await loginPage.validateNavbarLoginLink(messagesLogin.frontendValidations.loginLink);
+        await loginPage.validateNavbarRegisterLink(messagesLogin.frontendValidations.registerLink);
+        await loginPage.validateEmailLabel(messagesLogin.frontendValidations.emailLabel);
+        await loginPage.validatePasswordLabel(messagesLogin.frontendValidations.passwordLabel);
+
+        // Validações do Input de Email
+        await loginPage.validateEmailPlaceholder(messagesLogin.frontendValidations.emailPlaceholder);
+        await loginPage.validateEmailIsEmpty();
+        await loginPage.fillEmail(process.env.MAIN_EMAIL as string);
+        await loginPage.validateEmailValue(process.env.MAIN_EMAIL as string);
+        await loginPage.clearEmail();
+        await loginPage.validateEmailIsEmpty();
+
+        // Validações do Input de Senha
+        await loginPage.validatePasswordPlaceholder(messagesLogin.frontendValidations.passwordPlaceholder);
+        await loginPage.validatePasswordIsEmpty();
+        await loginPage.fillPassword(process.env.MAIN_PASSWORD as string);
+        await loginPage.validatePasswordValue(process.env.MAIN_PASSWORD as string);
+        await loginPage.clearPassword();
+        await loginPage.validatePasswordIsEmpty();
+
+        // Validação do botão de Entrar
+        await loginPage.validateSubmitButton(messagesLogin.frontendValidations.submitButton);
     });
 });

@@ -9,5 +9,15 @@
         "invalidLogin": "Problemas com o login do usuário",
         "emailRequired": "Email é um campo obrigatório",
         "passwordRequired": "Senha é um campo obrigatório"
+    },
+    "frontendValidations": {
+        "titlePage": "Seu Barriga",
+        "loginLink": "Login",
+        "registerLink": "Novo usuário?",
+        "emailLabel": "Email",
+        "passwordLabel": "Senha",
+        "emailPlaceholder": "Email",
+        "passwordPlaceholder": "Password",
+        "submitButton": "Entrar"
     }
 }
