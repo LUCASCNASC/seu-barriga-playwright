@@ -1,4 +1,4 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "./globalCommands";
 import { LoginPage } from "../tests/pages/login/LoginPage";
 import messagesLogin from "../tests/pages/login/messagesLogin.json";
 
