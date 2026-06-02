@@ -11,4 +11,7 @@ export const loginSelectors = {
 	emailLabel: 'label[for="exampleInputEmail1"]',
 	passwordLabel: 'label[for="exampleInputPassword1"]',
 	navbarLogoutLink: 'li a[href="/logout"]',
+	accountsDropdown: 'a.dropdown-toggle:has-text("Contas")',
+	addAccountLink: 'a[href="/addConta"]',
+	accountNameInput: 'input#nome',
 };

@@ -1,11 +1,16 @@
 import { test, expect } from "./globalCommands";
+import { AccountPage } from "./pages/account/AccountPage";
+import { fakerPT_BR as faker } from "@faker-js/faker";
 
 test.describe("New Account", () => {
-    test("should access new account page after login", async ({ page, loginMainUser }) => {
-        // Executa o login global com as credenciais MAIN utilizando a fixture customizada
+
+    test("frontend validations", async ({ page, loginMainUser }) => {
         await loginMainUser();
-        
-        // A partir daqui, adicione os passos específicos para a página de contas
-        // Exemplo: await page.locator('a[href="/addConta"]').click();
+        const accountPage = new AccountPage(page);
+        await accountPage.clickAccountsDropdown();
+        await accountPage.clickAddAccount();
+
+        const randomName = faker.person.fullName();
+        await accountPage.fillAccountName(randomName);
     });
 });
