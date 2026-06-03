@@ -1,10 +1,11 @@
 import { test, expect } from "./globalCommands";
 import { AccountPage } from "./pages/account/AccountPage";
 import { fakerPT_BR as faker } from "@faker-js/faker";
+import messagesAccount from "./pages/account/messagesAccount.json";
 
 test.describe("New Account", () => {
 
-    test("frontend validations", async ({ page, loginMainUser }) => {
+    test("create new account and delete it", async ({ page, loginMainUser }) => {
         await loginMainUser();
         const accountPage = new AccountPage(page);
         await accountPage.clickAccountsDropdown();
@@ -12,5 +13,38 @@ test.describe("New Account", () => {
 
         const randomName = faker.person.fullName();
         await accountPage.fillAccountName(randomName);
+        await accountPage.clickSave();
+        await accountPage.clickAccountsDropdown();
+        await accountPage.clickListAccounts();
+        await accountPage.validateAccountVisible(randomName);
+        await accountPage.deleteAccount(randomName);
+        await accountPage.validateSuccessMessage(messagesAccount.messages.accountDeletedSuccess);
+        await accountPage.validateAccountNotVisible(randomName);
+    });
+
+    test("create new account, change name and delete it", async ({ page, loginMainUser }) => {
+        await loginMainUser();
+        const accountPage = new AccountPage(page);
+        await accountPage.clickAccountsDropdown();
+        await accountPage.clickAddAccount();
+
+        const randomName = faker.person.fullName();
+        await accountPage.fillAccountName(randomName);
+        await accountPage.clickSave();
+        await accountPage.clickAccountsDropdown();
+        await accountPage.clickListAccounts();
+        await accountPage.validateAccountVisible(randomName);
+
+        await accountPage.clickEditAccount(randomName);
+        await accountPage.validateAccountNameInput(randomName);
+
+        const newRandomName = faker.person.fullName();
+        await accountPage.fillAccountName(newRandomName);
+        await accountPage.clickSave();
+        await accountPage.validateAccountVisible(newRandomName);
+
+        await accountPage.deleteAccount(newRandomName);
+        await accountPage.validateSuccessMessage(messagesAccount.messages.accountDeletedSuccess);
+        await accountPage.validateAccountNotVisible(newRandomName);
     });
 });

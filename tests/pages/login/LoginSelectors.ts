@@ -14,4 +14,9 @@ export const loginSelectors = {
 	accountsDropdown: 'a.dropdown-toggle:has-text("Contas")',
 	addAccountLink: 'a[href="/addConta"]',
 	accountNameInput: 'input#nome',
+	saveButton: 'button:has-text("Salvar")',
+	listAccountsLink: 'a[href="/contas"]',
+	accountsTable: 'table#tabelaContas',
+	deleteAccountButton: 'a[href^="/removerConta"]',
+	editAccountButton: 'a[href^="/editarConta"]',
 };
