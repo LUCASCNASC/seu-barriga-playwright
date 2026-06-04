@@ -1,5 +1,8 @@
 {
     "messages": {
-        "accountDeletedSuccess": "Conta removida com sucesso!"
+        "accountDeletedSuccess": "Conta removida com sucesso!",
+        "accountAddedSuccess": "Conta adicionada com sucesso!",
+        "accountUpdatedSuccess": "Conta alterada com sucesso!",
+        "accountNameEmptyError": "Informe o nome da conta"
     }
 }
