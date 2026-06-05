@@ -1,0 +1,9 @@
+{
+    "messages": {
+        "accountDeletedSuccess": "Conta removida com sucesso!",
+        "nameRequired": "Nome é um campo obrigatório",
+        "emailRequired": "Email é um campo obrigatório",
+        "passwordRequired": "Senha é um campo obrigatório",
+        "userCreatedSuccess": "Usuário inserido com sucesso"
+    }
+}
