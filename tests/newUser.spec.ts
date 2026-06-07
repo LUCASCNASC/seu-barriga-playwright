@@ -3,7 +3,7 @@ import { UserPage } from "./pages/user/UserPage";
 import { fakerPT_BR as faker } from "@faker-js/faker";
 import messagesUser from "./pages/user/messagesUser.json";
 
-test.describe("New User", () => {
+test.describe("New User Success", () => {
     test.beforeEach(async ({ page }) => {
         const userPage = new UserPage(page);
         await userPage.goto();
@@ -15,6 +15,13 @@ test.describe("New User", () => {
         await userPage.fillPassword(faker.internet.password());
         await userPage.submit();
         await userPage.validateSuccessMessage(messagesUser.messages.userCreatedSuccess);
+    });
+});
+
+test.describe("New User Error", () => {
+    test.beforeEach(async ({ page }) => {
+        const userPage = new UserPage(page);
+        await userPage.goto();
     });
     test("try to create new user without filling name", async ({ page }) => {
         const userPage = new UserPage(page);
