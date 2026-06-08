@@ -70,4 +70,32 @@ export class MovimentationPage {
         const successLocator = this.page.locator(movimentationSelectors.successAlert, { hasText: expectedText });
         await expect(successLocator).toBeVisible();
     }
+
+    // Clica no link para ir ao Resumo Mensal
+    async clickResumoMensal() {
+        await this.page.click(movimentationSelectors.resumoMensalLink);
+    }
+
+    // Valida se a movimentação está visível com os dados corretos no extrato
+    async validateMovimentationVisible(descricao: string, dataPagamento: string, conta: string, valor: string, status: string) {
+        const row = this.page.locator(movimentationSelectors.extratoTable).getByRole('row').filter({ hasText: descricao }).filter({ hasText: conta });
+        await expect(row.locator('td').nth(0)).toHaveText(descricao);
+        await expect(row.locator('td').nth(1)).toHaveText(dataPagamento);
+        await expect(row.locator('td').nth(2)).toHaveText(conta);
+        await expect(row.locator('td').nth(3)).toHaveText(valor);
+        await expect(row.locator('td').nth(4)).toHaveText(status);
+        await expect(row).toBeVisible();
+    }
+
+    // Remove a movimentação baseada na descrição e conta
+    async deleteMovimentation(descricao: string, conta: string) {
+        const row = this.page.locator(movimentationSelectors.extratoTable).getByRole('row').filter({ hasText: descricao }).filter({ hasText: conta });
+        await row.locator(movimentationSelectors.removeButton).click();
+    }
+
+    // Valida se a movimentação não está mais visível no extrato
+    async validateMovimentationNotVisible(descricao: string, conta: string) {
+        const row = this.page.locator(movimentationSelectors.extratoTable).getByRole('row').filter({ hasText: descricao }).filter({ hasText: conta });
+        await expect(row).toBeHidden();
+    }
 }

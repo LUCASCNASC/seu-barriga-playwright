@@ -10,4 +10,6 @@ export const movimentationSelectors = {
 	statusPagoRadio: '#status_pago',
 	submitButton: 'button[type="submit"].btn-primary',
 	successAlert: '.alert-success',
+	extratoTable: '#tabelaExtrato',
+	removeButton: '.glyphicon-remove-circle'
 };

@@ -32,7 +32,13 @@ test.describe("New Movimentation", () => {
         await movimentationPage.fillValor(randomValor);
         await movimentationPage.selectConta(accountName);
         await movimentationPage.selectStatusPago();
-        // await movimentationPage.submit();
-        // await movimentationPage.validateSuccessMessage("Movimentação adicionada com sucesso!");
+        await movimentationPage.submit();
+        await movimentationPage.validateSuccessMessage("Movimentação adicionada com sucesso!");
+        await movimentationPage.clickResumoMensal();
+
+        // await movimentationPage.validateMovimentationVisible("Pagamento pix", todayDate, accountName, randomValor + ".00", "Pago");
+        // await movimentationPage.deleteMovimentation("Pagamento pix", accountName);
+        // await movimentationPage.validateSuccessMessage("Movimentação removida com sucesso!");
+        // await movimentationPage.validateMovimentationNotVisible("Pagamento pix", accountName);
     });
 });
