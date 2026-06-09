@@ -2,14 +2,13 @@ import { test, expect } from "./globalCommands";
 import { MovimentationPage } from "./pages/movimentation/MovimentationPage";
 import { fakerPT_BR as faker } from "@faker-js/faker";
 import messagesAccount from "./pages/account/messagesAccount.json";
+import messagesMovimentation from "./pages/movimentation/messagesMovimentation.json";
 
 test.describe("New Movimentation", () => {
     let accountName: string;
 
-    test.beforeEach(async ({ page, loginMainUser, createAccount }) => {
+    test.beforeEach(async ({ page, loginMainUser }) => {
         await loginMainUser();
-        accountName = faker.person.fullName();
-        await createAccount(accountName);
         const movimentationPage = new MovimentationPage(page);
         await movimentationPage.goto();
     });
@@ -17,28 +16,21 @@ test.describe("New Movimentation", () => {
         const movimentationPage = new MovimentationPage(page);
         await movimentationPage.clickCreateMovimentation();
 
-        // Obtém a data atual no formato DD/MM/YYYY
         const now = new Date();
-        const todayDate = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
-        
-        const parteInteressada = faker.person.fullName();
-        const randomValor = faker.number.int({ min: 1, max: 10000 }).toString();
+        const currentDate = `${String(now.getDate()).padStart(2, '0')}/${String(now.getMonth() + 1).padStart(2, '0')}/${now.getFullYear()}`;
+        const description = "Pagamento do serviço";
+        const interested = faker.person.fullName();
+        const value = faker.number.int({ min: 1, max: 999999 }).toString();
 
         await movimentationPage.selectTipoReceita();
-        await movimentationPage.fillDataTransacao(todayDate);
-        await movimentationPage.fillDataPagamento(todayDate);
-        await movimentationPage.fillDescricao("Pagamento pix");
-        await movimentationPage.fillInteressado(parteInteressada);
-        await movimentationPage.fillValor(randomValor);
-        await movimentationPage.selectConta(accountName);
+        await movimentationPage.fillDataTransacao(currentDate);
+        await movimentationPage.fillDataPagamento(currentDate);
+        await movimentationPage.fillDescricao(description);
+        await movimentationPage.fillInteressado(interested);
+        await movimentationPage.fillValor(value);
+        await movimentationPage.selectConta(messagesMovimentation.accountName.standard);
         await movimentationPage.selectStatusPago();
         await movimentationPage.submit();
-        await movimentationPage.validateSuccessMessage("Movimentação adicionada com sucesso!");
-        await movimentationPage.clickResumoMensal();
-
-        // await movimentationPage.validateMovimentationVisible("Pagamento pix", todayDate, accountName, randomValor + ".00", "Pago");
-        // await movimentationPage.deleteMovimentation("Pagamento pix", accountName);
-        // await movimentationPage.validateSuccessMessage("Movimentação removida com sucesso!");
-        // await movimentationPage.validateMovimentationNotVisible("Pagamento pix", accountName);
+        await movimentationPage.validateSuccessMessage(messagesMovimentation.messages.movimentationAddedSuccess);
     });
 });

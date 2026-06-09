@@ -1,5 +1,8 @@
 {
     "messages": {
-        
+        "movimentationAddedSuccess": "Movimentação adicionada com sucesso!"
+    },
+    "accountName": {
+        "standard": "Standard account automation"
     }
 }
