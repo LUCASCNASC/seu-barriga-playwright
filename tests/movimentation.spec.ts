@@ -5,7 +5,6 @@ import messagesAccount from "./pages/account/messagesAccount.json";
 import messagesMovimentation from "./pages/movimentation/messagesMovimentation.json";
 
 test.describe("New Movimentation", () => {
-    let accountName: string;
 
     test.beforeEach(async ({ page, loginMainUser }) => {
         await loginMainUser();

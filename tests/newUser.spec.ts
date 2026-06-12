@@ -19,6 +19,7 @@ test.describe("New User Success", () => {
 });
 
 test.describe("New User Error", () => {
+    
     test.beforeEach(async ({ page }) => {
         const userPage = new UserPage(page);
         await userPage.goto();
