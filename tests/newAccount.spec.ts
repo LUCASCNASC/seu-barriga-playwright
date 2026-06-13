@@ -4,7 +4,6 @@ import { fakerPT_BR as faker } from "@faker-js/faker";
 import messagesAccount from "./pages/account/messagesAccount.json";
 
 test.describe("New Account", () => {
-    
     test.beforeEach(async ({ page, loginMainUser }) => {
         await loginMainUser();
         const accountPage = new AccountPage(page);
