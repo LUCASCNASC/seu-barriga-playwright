@@ -19,6 +19,7 @@ export const test = base.extend<MyFixtures>({
             await loginPage.submit();
         });
     },
+    
     createAccount: async ({ page }, use) => {
         await use(async (accountName: string) => {
             const accountPage = new AccountPage(page);
