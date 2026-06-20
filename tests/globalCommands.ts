@@ -2,13 +2,13 @@ import { test as base, expect } from "@playwright/test";
 import { LoginPage } from "./pages/login/LoginPage";
 import { AccountPage } from "./pages/account/AccountPage";
 
-// Tipagem das nossas fixtures personalizadas
+// Tipagem das nossas fixtures personalizadas.
 type MyFixtures = {
     loginMainUser: () => Promise<void>;
     createAccount: (accountName: string) => Promise<void>;
 };
 
-// Estendendo o 'test' base do Playwright com o nosso novo comando global
+// Estendendo o 'test' base do Playwright com o nosso novo comando global.
 export const test = base.extend<MyFixtures>({
     loginMainUser: async ({ page }, use) => {
         await use(async () => {

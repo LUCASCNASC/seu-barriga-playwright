@@ -10,7 +10,7 @@ test.describe("New Movimentation", () => {
         const movimentationPage = new MovimentationPage(page);
         await movimentationPage.goto();
     });
-    test("create new movimentation and delete it", async ({ page }) => {
+    test("create new movimentation and delete it.", async ({ page }) => {
         const movimentationPage = new MovimentationPage(page);
         await movimentationPage.clickCreateMovimentation();
 

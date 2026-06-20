@@ -2,7 +2,7 @@ import { test, expect } from "./globalCommands";
 import { LoginPage } from "../tests/pages/login/LoginPage";
 import messagesLogin from "../tests/pages/login/messagesLogin.json";
 
-test.describe("Successful login", () => {
+test.describe("Successful login.", () => {
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.goto();
@@ -25,7 +25,7 @@ test.describe("Successful login", () => {
     });
 });
 
-test.describe("login: credentials invalid", () => {
+test.describe("login: credentials invalid.", () => {
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page);
         await loginPage.goto();
@@ -71,7 +71,7 @@ test.describe("login: fields empty", () => {
     });
 });
 
-test.describe("frontend validations", () => {
+test.describe("frontend validations.", () => {
 
     test.beforeEach(async ({ page }) => {
         const loginPage = new LoginPage(page);
